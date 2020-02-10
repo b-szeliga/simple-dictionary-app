@@ -1,28 +1,17 @@
-'''
-GUI DICTIONARY APPLICATION
-
-Functions:
-    - Search for a word
-    - Shows all definitions
-    - If word is not found, tries to find similar words
-    - Checkmark "correct me" to automatically find closest match
-    - TODO Sidebar to search for all words
-
-'''
 import tkinter as tk
 import json
 import difflib
 
 # starting variables
 data = json.load(open("data.json"))
-root = tk.Tk()  # root widget for main app
-root.resizable(False, False)  # make app windows solid, not being able to resize
+root = tk.Tk()  # root widget for the main app
+root.resizable(False, False)  # make app windows solid, not allowing for resizing
 root.winfo_toplevel().title("Simple Dictionary")
 startValueWord = "A word"
 startValueDefinition = "A definition"
 autoCorrect = tk.IntVar()
 
-# function that finds a word and its definition in data.json files
+# finds a word and it's definition in data.json file
 def translate(w):
     # formatting depending on if a word has more than 1 definition
     if len(data[w]) == 1:
@@ -40,11 +29,11 @@ def searchF():
     w = searchInput.get()
     w = w.strip()
     answerWord.configure(text = w)
-    # try to find a definition, if not then tries to find similiar words
+    # try to find a definition, if not then try to find similar words
     try:
         translate(w)
     except Exception as e:
-        # trying to get closest match if exists
+        # try to get the closest match if it exists
         if difflib.get_close_matches(w, data) and (autoCorrect.get()==1):
             corr = difflib.get_close_matches(w, data, 1)
             answerWord.configure(text=corr[0])
