@@ -1,8 +1,0 @@
-GUI DICTIONARY APPLICATION
-
-Functions:
-    - Search for a word
-    - Shows all definitions
-    - If word is not found, tries to find similar words
-    - Checkmark "correct me" to automatically find closest match
-    - TODO Sidebar to search for all words
